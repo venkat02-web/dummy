@@ -16,6 +16,8 @@
 
 		<app.runtime>4.3.0-20210304</app.runtime>
 		<mule.maven.plugin.version>3.4.2</mule.maven.plugin.version>
+		<sonar.sources>src/main/mule</sonar.sources>
+        <sonar.tests/>
 	</properties>
 
 	<build>
@@ -37,6 +39,11 @@
 	</build>
 
 	<dependencies>
+	    <dependency>
+             <groupId>org.sonarsource.scanner.maven</groupId>
+             <artifactId>sonar-maven-plugin</artifactId>
+             <version>3.6.1.1688</version>
+        </dependency>
         <dependency>
             <groupId>org.mule.connectors</groupId>
             <artifactId>mule-http-connector</artifactId>
