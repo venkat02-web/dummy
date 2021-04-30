@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="dummyapp-test-suite.xml" />
+	<munit:test name="dummyapp-test-suite-dummyappFlowTest" doc:id="8a14a76e-85a7-4f1b-9206-0bbad695516c" description="Test">
+		<munit:execution >
+			<munit:set-null-payload doc:name="Set null payload" doc:id="23a0b164-d10f-4181-b253-b9b99f3b14c2" />
+			<flow-ref doc:name="Flow-ref to dummyappFlow" doc:id="af508d16-ca4f-4505-8971-644640d954cd" name="dummyappFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-equals doc:name="Assert equals" doc:id="40d95f70-a4b2-4df7-b008-ed68fd20550d" actual="#[payload]" expected='#["hello venki"]' message="check your payload"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="dummyapp-test-suite-dummyappFlowTest2" doc:id="1cdc1dcd-4919-4fce-af92-278a40a55b44" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to dummyappFlow" doc:id="09729e79-6b69-4a08-b779-bbb5ed5a0f84" name="dummyappFlow"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="dfd4123e-3758-4756-88be-458aab4b8d5c" message="check your payload" is='#[MunitTools::startsWith("hello")]' expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
